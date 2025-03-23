@@ -8,7 +8,7 @@ export const getTopFiftyAssets = async (): Promise<Assets[] | null> => {
                 limit: 50,
             },
         })
-        return response.data
+        return response.data.data
     } catch (error) {
         console.error('Error fetching assets:', error)
         return null
