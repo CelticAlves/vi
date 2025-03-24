@@ -1,5 +1,6 @@
 import { Assets } from '@/crypto/types/assets'
 import React from 'react'
+import LivePrice from '../LivePrice/LivePrice'
 
 type tableProps = {
     data: Assets[]
@@ -7,28 +8,52 @@ type tableProps = {
 
 const Table = ({ data }: tableProps) => {
     return (
-        <table>
-            <thead>
+        <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+            <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th>Rank</th>
-                    <th>Name</th>
-                    <th>Symbol</th>
-                    <th>Price</th>
-                    <th>Market Cap</th>
-                    <th>Volume (24h)</th>
-                    <th>Change (24h)</th>
+                    <th scope="col" className="px-6 py-3">
+                        Rank
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Name
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Symbol
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Price
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Market Cap
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Volume (24h)
+                    </th>
+                    <th scope="col" className="px-6 py-3">
+                        Change (24h)
+                    </th>
                 </tr>
             </thead>
             <tbody>
                 {data.map(asset => (
-                    <tr key={asset.id}>
-                        <td>{asset.rank}</td>
-                        <td>{asset.name}</td>
-                        <td>{asset.symbol}</td>
-                        <td>${asset.priceUsd}</td>
-                        <td>${asset.marketCapUsd}</td>
-                        <td>${asset.volumeUsd24Hr}</td>
-                        <td>{asset.changePercent24Hr}%</td>
+                    <tr
+                        key={asset.id}
+                        className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+                    >
+                        <td className="px-6 py-4">{asset.rank}</td>
+                        <td className="px-6 py-4">{asset.name}</td>
+                        <td className="px-6 py-4">{asset.symbol}</td>
+                        <td className="bg-gray-50 px-6 py-4 dark:bg-gray-900">
+                            <LivePrice
+                                assetId={asset.id}
+                                initialPrice={asset.priceUsd}
+                            />
+                        </td>
+                        <td className="px-6 py-4">${asset.marketCapUsd}</td>
+                        <td className="px-6 py-4">${asset.volumeUsd24Hr}</td>
+                        <td className="px-6 py-4">
+                            {asset.changePercent24Hr}%
+                        </td>
                     </tr>
                 ))}
             </tbody>

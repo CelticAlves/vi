@@ -7,7 +7,7 @@ export type Assets = {
     max_supply: number
     marketCapUsd: number
     volumeUsd24Hr: number
-    priceUsd: number
+    priceUsd: string
     changePercent24Hr: number
     vwap24Hr: number
 }
