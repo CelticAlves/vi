@@ -1,13 +1,13 @@
 export type Assets = {
     id: string
-    rank: number
+    rank: string
     symbol: string
     name: string
-    supply: number
-    max_supply: number
-    marketCapUsd: number
-    volumeUsd24Hr: number
+    supply: string
+    max_supply: string
+    marketCapUsd: string
+    volumeUsd24Hr: string
     priceUsd: string
-    changePercent24Hr: number
-    vwap24Hr: number
+    changePercent24Hr: string
+    vwap24Hr: string
 }

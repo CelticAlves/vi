@@ -35,27 +35,38 @@ const Table = ({ data }: tableProps) => {
                 </tr>
             </thead>
             <tbody>
-                {data.map(asset => (
-                    <tr
-                        key={asset.id}
-                        className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
-                    >
-                        <td className="px-6 py-4">{asset.rank}</td>
-                        <td className="px-6 py-4">{asset.name}</td>
-                        <td className="px-6 py-4">{asset.symbol}</td>
-                        <td className="bg-gray-50 px-6 py-4 dark:bg-gray-900">
-                            <LivePrice
-                                assetId={asset.id}
-                                initialPrice={asset.priceUsd}
-                            />
-                        </td>
-                        <td className="px-6 py-4">${asset.marketCapUsd}</td>
-                        <td className="px-6 py-4">${asset.volumeUsd24Hr}</td>
-                        <td className="px-6 py-4">
-                            {asset.changePercent24Hr}%
-                        </td>
-                    </tr>
-                ))}
+                {data.map(asset => {
+                    const changePercent = parseFloat(asset.changePercent24Hr)
+                    const changeClass =
+                        changePercent < 0 ? 'text-red-300' : 'text-green-300'
+                    return (
+                        <tr
+                            key={asset.id}
+                            className="border-b border-gray-200 bg-white dark:border-gray-700 dark:bg-gray-800"
+                        >
+                            <td className="px-6 py-4">{asset.rank}</td>
+                            <td className="px-6 py-4">{asset.name}</td>
+                            <td className="px-6 py-4">{asset.symbol}</td>
+                            <td className="bg-gray-50 px-6 py-4 dark:bg-gray-900">
+                                <LivePrice
+                                    assetId={asset.id}
+                                    initialPrice={asset.priceUsd}
+                                />
+                            </td>
+                            <td className="px-6 py-4">
+                                ${parseFloat(asset.marketCapUsd).toFixed(2)}
+                            </td>
+                            <td className="px-6 py-4">
+                                ${parseFloat(asset.volumeUsd24Hr).toFixed(2)}
+                            </td>
+                            <td
+                                className={`px-6 py-4 font-semibold ${changeClass}`}
+                            >
+                                {changePercent.toFixed(2)}%
+                            </td>
+                        </tr>
+                    )
+                })}
             </tbody>
         </table>
     )

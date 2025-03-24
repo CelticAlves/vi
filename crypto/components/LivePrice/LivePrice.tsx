@@ -9,22 +9,36 @@ type LivePriceProps = {
 }
 
 const LivePrice = ({ assetId, initialPrice }: LivePriceProps) => {
-    const [price, setPrice] = useState(initialPrice)
-    console.log('Type of price:', typeof price, 'Value:', price)
+    const [price, setPrice] = useState(parseFloat(initialPrice))
+    const [flashClass, setFlashClass] = useState<string>('')
 
     useEffect(() => {
         priceFeed.connect([assetId])
 
         const unsubscribe = priceFeed.subscribe(prices => {
             if (prices[assetId]) {
-                setPrice(prices[assetId])
+                const newPrice = parseFloat(prices[assetId])
+
+                setPrice(newPrice)
+
+                if (newPrice > price) {
+                    setFlashClass('text-green-300')
+                } else if (newPrice < price) {
+                    setFlashClass('text-red-300')
+                }
+
+                setTimeout(() => setFlashClass(''), 500)
             }
         })
 
         return () => unsubscribe()
-    }, [assetId])
+    }, [assetId, price])
 
-    return <span>${price}</span>
+    return (
+        <span className={`transition-colors duration-300 ${flashClass}`}>
+            ${price.toFixed(2)}
+        </span>
+    )
 }
 
 export default LivePrice
