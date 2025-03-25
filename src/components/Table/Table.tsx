@@ -1,6 +1,6 @@
 import React from 'react'
 import LivePrice from '../LivePrice/LivePrice'
-import { Assets } from '@/app/types/assets'
+import { Assets } from '@/src/types/assets'
 
 type tableProps = {
     data: Assets[]
@@ -9,7 +9,7 @@ type tableProps = {
 const Table = ({ data }: tableProps) => {
     return (
         <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-            <thead className="bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
+            <thead className="sticky top-0 bg-gray-50 text-xs text-gray-700 uppercase dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                     <th scope="col" className="px-6 py-3">
                         Rank
