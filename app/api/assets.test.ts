@@ -1,7 +1,8 @@
 import { describe, it, expect, vi, afterEach, Mock } from 'vitest'
+
+import { getTopFiftyAssets } from './assets'
 import axiosClient from '../services/axiosClient'
 import { Assets } from '../types/assets'
-import { getTopFiftyAssets } from './assets'
 
 vi.mock('../services/axiosClient')
 

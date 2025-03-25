@@ -1,6 +1,6 @@
-import { Assets } from '@/crypto/types/assets'
 import React from 'react'
 import LivePrice from '../LivePrice/LivePrice'
+import { Assets } from '@/app/types/assets'
 
 type tableProps = {
     data: Assets[]

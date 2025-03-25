@@ -1,6 +1,6 @@
-import { getTopFiftyAssets } from '@/crypto/api/assets'
-import Table from '@/crypto/components/Table/Table'
 import React from 'react'
+import { getTopFiftyAssets } from '../api/assets'
+import Table from '../components/Table/Table'
 
 export default async function CryptoPage() {
     const assets = await getTopFiftyAssets()

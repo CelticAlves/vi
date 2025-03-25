@@ -1,6 +1,6 @@
 'use client'
 
-import usePriceChange from '@/crypto/hooks/usePriceStatus'
+import usePriceChange from '@/app/hooks/usePriceStatus'
 
 type LivePriceProps = {
     assetId: string
