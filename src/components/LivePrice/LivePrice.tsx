@@ -1,6 +1,6 @@
 'use client'
 
-import usePriceChange from '@/src/hooks/usePriceStatus'
+import usePriceChange from '../../hooks/usePriceStatus'
 
 type LivePriceProps = {
     assetId: string
